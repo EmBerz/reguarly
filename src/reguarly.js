@@ -17,6 +17,11 @@ export default class Reguarly extends Component {
           task: 'Run a mile',
           frequency: 'twice a week',
           description: 'get in shape'
+        },
+        {
+          task: 'Pair Programming for fun',
+          frequency: 'once a week',
+          description: 'Get better and programming and communuicating at the same time!'
         }
       ]
     }
