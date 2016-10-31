@@ -1,39 +1,42 @@
 import React, { Component } from 'react'
 import ListItem from './listItem'
-import AddButton from './addButton'
+import Button from './button'
 
 export default class TaskList extends Component {
   constructor(props){
     super(props)
+
     this.state = {
       tasks: this.props.tasks
     }
   }
   render(){
     let itemizedTasks = this.state.tasks.map((task)=>{
-      return <ListItem {...task} key={task.task} saveNew={this.saveNewTask.bind(this)}/>
+      return <ListItem {...task} key={task.title || 'new'} saveNew={this.saveNewTask.bind(this)}/>
     })
+
     return (
       <div>
         <ul>
         {itemizedTasks}
         </ul>
-        <AddButton addHandler={this.addTask.bind(this)} />
+        <Button handleClick={this.addTask.bind(this)} label='Add' />
       </div>
     )
   }
   addTask() {
     let tasks = this.state.tasks
     tasks.push({
-      task: undefined,
+      title: undefined,
       description: undefined,
-      key:"new"
+      key:"new",
+      saved: false
     })
     this.setState({
       tasks: tasks
     })
   }
   saveNewTask(event) {
-    console.log(event.target.value)
+
   }
 }

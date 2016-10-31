@@ -2,3 +2,32 @@
   font-size: .75em;
   color: grey;
 }
+
+.task{
+  padding: 8px;
+}
+
+ul{
+  padding: 16px;
+}
+li  {
+  list-style-type: none;
+  background-color: #C3FC98;
+  margin: 8px;
+  border-radius: 8px;
+}
+#container{
+  background-color: #94F0F4;
+  margin: 8px;
+  padding: 8px;
+}
+.button {
+  background-color: #FF4519;
+  padding: 4px;
+  text-align: center;
+  max-width: 25%;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+//http://paletton.com/#uid=3090n0kl1Wx1x+IcEXDsUWkWEVB
