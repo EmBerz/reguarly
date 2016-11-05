@@ -12,7 +12,7 @@ export default class TaskList extends Component {
   }
   render(){
     let itemizedTasks = this.state.tasks.map((task)=>{
-      return <ListItem {...task} key={task.title || 'new'} saveNew={this.saveNewTask.bind(this)}/>
+      return <ListItem {...task} key={task.title || Math.random()} saveNew={this.saveNewTask.bind(this)}/>
     })
 
     return (

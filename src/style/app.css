@@ -30,4 +30,27 @@ li  {
   margin: 0 auto;
 }
 
+input{
+  padding: 4px;
+  margin: 8px 16px;
+  border: none;
+}
+input.long{
+  width: 75%;
+}
+select{
+  background-color: #F8FFF3;
+  border-radius: 0;
+  border:none;
+  -webkit-appearance: none;
+  padding: 4px;
+}
+
+.frequency{
+  float:right
+}
+
+body{
+  width: 75%;
+}
 //http://paletton.com/#uid=3090n0kl1Wx1x+IcEXDsUWkWEVB

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Frequency from './models/frequency'
 import TaskList from './components/taskList'
 import ListItem from './components/listItem'
 
@@ -11,17 +11,26 @@ export default class Reguarly extends Component {
       tasks: [
         {
           title: 'Vaccuum',
-          frequency: 'Once a month',
+          frequency: {
+            amount: 3,
+            unit: 'month'
+          },
           description: 'Keep place free of tolly hair'
         },
         {
           title: 'Run a mile',
-          frequency: 'twice a week',
+          frequency: {
+            amount: 2,
+            unit: 'week'
+          },
           description: 'get in shape'
         },
         {
           title: 'Pair Programming for fun',
-          frequency: 'once a week',
+          frequency: {
+            amount: 1,
+            unit: 'day'
+          },
           description: 'Get better and programming and communuicating at the same time!'
         }
       ]
