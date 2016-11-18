@@ -1,17 +1,13 @@
 
-import jsdom from 'jsdom'
+require('../test.main.js')
 import React from 'react';
 import { mount } from 'enzyme';
-import Button from '../src/components/button.js'
 import sinon from 'sinon';
+import { expect } from 'chai'
 
-let expect = require('chai').expect
+import Button from '../../src/components/button.js'
 
-const doc = jsdom.jsdom('<!doctype html><html><body></body></html>')
-global.document = doc
-global.window = doc.defaultView
-
-describe('the button component', () => {
+describe('the Button component', () => {
   let button, fakeClicker;
   beforeEach(() => {
     fakeClicker = sinon.spy();

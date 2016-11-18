@@ -1,6 +1,5 @@
 export default class Frequency {
   constructor(amount, unit){
-    console.log('here')
     this.amount = amount || null;
     this.unit = unit || null;
   }

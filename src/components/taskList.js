@@ -12,7 +12,6 @@ export default class TaskList extends Component {
     }
   }
   render(){
-    console.log('tasks',this.state.tasks)
     let itemizedTasks = this.state.tasks.map((task)=>{
       return <ListItem {...task} key={task.title || Math.random()} saveNew={this.saveNewTask.bind(this)}/>
     })
@@ -50,7 +49,6 @@ export default class TaskList extends Component {
       saved: true,
       key: t.title
     }
-    console.log('task', task)
     let tasks = this.state.tasks;
     tasks.push(task)
     this.setState({ tasks })
