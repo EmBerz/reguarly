@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Frequency from './models/frequency'
 import TaskList from './components/taskList'
 import ListItem from './components/listItem'
-
 export default class Reguarly extends Component {
   constructor(props){
     super(props);
@@ -40,6 +39,7 @@ export default class Reguarly extends Component {
 
     return (
       <div id="container">
+        <h1>My Habits</h1>
         <TaskList tasks={this.state.tasks}>
 
         </TaskList>

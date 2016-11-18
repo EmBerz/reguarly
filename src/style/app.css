@@ -4,9 +4,16 @@
 }
 
 .task{
-  padding: 8px;
+  padding: 12px;
+  position: relative;
 }
 
+.unsaved-task{
+}
+.frequency{
+  position: absolute;
+  right: 12px;
+}
 ul{
   padding: 16px;
 }
@@ -32,8 +39,12 @@ li  {
 
 input{
   padding: 4px;
-  margin: 8px 16px;
+  margin: 8px;
   border: none;
+}
+input[type="number"]{
+  padding: 4px 0;
+  text-align: right;
 }
 input.long{
   width: 75%;
@@ -43,14 +54,25 @@ select{
   border-radius: 0;
   border:none;
   -webkit-appearance: none;
-  padding: 4px;
+  padding: 4px 10px;
 }
-
-.frequency{
-  float:right
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 3px solid #6DFA00;
+  position: absolute;
+  right: 3px;
+  top: 18px;
+}
+h1{
+  width: 100%;
+  text-align: center;
 }
 
 body{
   width: 75%;
+  font-family: Helvetica;
 }
 //http://paletton.com/#uid=3090n0kl1Wx1x+IcEXDsUWkWEVB

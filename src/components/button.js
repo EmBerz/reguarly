@@ -6,6 +6,7 @@ export default class Button extends Component {
   }
   render(){
     return <div className="button"
+                style={this.props.style}
                 onClick={this.props.handleClick}>
                 {this.props.label}
            </div>
