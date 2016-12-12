@@ -39,6 +39,21 @@ describe('the taskList component', () => {
       expect(newTask.saved).to.equal(false)
     })
   })
+  describe('editing a task', () => {
+    let masterTask = tasks[0];
+    let editingTask;
+    beforeEach(()=>{
+      taskList.find('li .edit-button').first().simulate('click');
+      editingTask = taskList.find('li').first();
+    })
+    it(" displays all the tasks values", () => {
+      expect(editingTask.html()).to.contain(masterTask.title)
+      expect(editingTask.html()).to.contain(masterTask.description)
+      expect(editingTask.find("input[type='number']").html()).to.contain(masterTask.frequency.amount)
+      //TODO make this actually test the select
+      expect(editingTask.find('select').text()).to.contain(masterTask.frequency.unit)
+    })
+})
   describe('saving a task', () => {
     let task;
     beforeEach(()=>{
@@ -47,14 +62,14 @@ describe('the taskList component', () => {
           frequency: {  amount: 3, unit: 'day' },
           description: 'yodelaehooo! best kind of song'
         };
-      taskList.instance().saveNewTask(task);
+      taskList.instance().saveTask(task);
 
     })
     it('adds the task to the list', () => {
       expect(taskList.text()).to.contain(task.title)
       expect(taskList.text()).to.contain(task.description)
     })
-    xit('displays the frequency in its readable format', () => {
+    it('displays the frequency in its readable format', () => {
       let freqStr = new Frequency(...task.frequency)
       expect(taskList.text()).to.contain(freqStr.perString())
     })

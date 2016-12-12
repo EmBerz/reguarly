@@ -12,8 +12,8 @@ export default class TaskList extends Component {
     }
   }
   render(){
-    let itemizedTasks = this.state.tasks.map((task)=>{
-      return <ListItem {...task} key={task.title || Math.random()} saveNew={this.saveNewTask.bind(this)}/>
+    let itemizedTasks = this.state.tasks.map((task, i)=>{
+      return <ListItem {...task} index={i} key={task.title || Math.random()} saveNew={this.saveTask.bind(this)}/>
     })
 
     return (
@@ -38,19 +38,25 @@ export default class TaskList extends Component {
       tasks: tasks
     })
   }
-  saveNewTask(t) {
+  saveTask(t) {
+    console.log(t)
     let task = {
       title: t.title,
       description: t.description,
       frequency: {
-        amount : 1,
-        unit: 'week'
+        amount : t.frequency.amount,
+        unit: t.frequency.unit
       },
       saved: true,
       key: t.title
     }
     let tasks = this.state.tasks;
-    tasks.push(task)
+    if(t.index != tasks.length-1){
+        tasks[t.index] = task;
+    } else{
+      tasks.splice(tasks.length-1)
+      tasks.push(task)
+    }
     this.setState({ tasks })
 
   }

@@ -4,11 +4,12 @@
 }
 
 .task{
-  padding: 12px;
+  padding: 24px 12px;
   position: relative;
 }
 
 .unsaved-task{
+
 }
 .frequency{
   position: absolute;
@@ -36,7 +37,14 @@ li  {
   border-radius: 8px;
   margin: 0 auto;
 }
+.edit-button{
+  float:right;
+  position:absolute;
+  right:6px;
+  bottom:6px;
+  width:5%
 
+}
 input{
   padding: 4px;
   margin: 8px;

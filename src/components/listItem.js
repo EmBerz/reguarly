@@ -7,18 +7,16 @@ export default class ListItem extends Component {
   constructor(props){
     super(props);
     this.state = props;
-    console.log('list item props',props)
-    this.frequency = new Frequency(props.frequency.amount, props.frequency.unit)
   }
   render() {
     if(!this.state.saved){
       return (
               <li className="task unsaved-task">
                 <div className="task-description">
-                  <input type="text" name="title"  placeholder="Do this" onChange={this.handleChange.bind(this)}/>
-                  <FrequencyInput frequency={this.props.frequency} updateFrequency={this.updateFrequency.bind(this)}/>
+                  <input type="text" ref="description" name="title"  placeholder="Do this" onChange={this.handleChange.bind(this)} defaultValue={this.state.title}/>
+                  <FrequencyInput frequency={this.state.frequency} updateFrequency={this.updateFrequency.bind(this)}/>
                 </div>
-                <input className="long" type="text" placeholder="why?" name="description" onChange={this.handleChange.bind(this)}/>
+                <input ref="description" className="long" type="text" placeholder="why?" name="description" onChange={this.handleChange.bind(this)} defaultValue={this.state.description}/>
                 <Button label="Save" handleClick={this.save.bind(this)}/>
               </li>
             )
@@ -27,11 +25,12 @@ export default class ListItem extends Component {
       <li className="task">
         <div className="task-description">
           <span>{this.state.title} </span>
-          <span className='frequency'>{this.frequency.getDescription()}</span>
+          <span className='frequency'>{new Frequency(this.state.frequency.amount, this.state.frequency.unit).getDescription()}</span>
         </div>
         <div className="item-description">
           {this.state.description}
         </div>
+        <Button label="Edit" className="edit-button" handleClick={this.edit.bind(this)}/>
       </li>
 
     )
@@ -45,23 +44,27 @@ export default class ListItem extends Component {
   }
 
   updateFrequency(frequency){
-    console.log('freq',frequency.target.name, frequency.target.value)
-    this.frequency = new Frequency(frequency.amount, frequency.unit)
+    let key = isNaN(frequency.target.value) ? 'unit' : 'amount'
+    let currFreq = this.state.frequency;
 
-      // this.setState({
-      //     frequency : {
-      //       amount: frequency.amount,
-      //       unit: frequency.unit
-      //     }
-      // })
+    currFreq[key] = frequency.target.value
+    this.setState({
+      frequency : currFreq
+    })
 
   }
 
   save(){
     this.setState({saved : true})
-     this.props.saveNew(this.state)
+    console.log('save', this.state)
+    this.props.saveNew(this.state)
+  }
+
+  edit(){
+    this.setState({saved: false})
   }
 }
+
 
 ListItem.defaultProps = {
   saved: true

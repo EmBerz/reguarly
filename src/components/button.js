@@ -5,7 +5,7 @@ export default class Button extends Component {
     super(props)
   }
   render(){
-    return <div className="button"
+    return <div className={"button " + this.props.className}
                 style={this.props.style}
                 onClick={this.props.handleClick}>
                 {this.props.label}
