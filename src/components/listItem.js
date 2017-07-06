@@ -13,11 +13,11 @@ export default class ListItem extends Component {
       return (
               <li className="task unsaved-task">
                 <div className="task-description">
-                  <input type="text" ref="description" name="title"  placeholder="Do this" onChange={this.handleChange.bind(this)} defaultValue={this.state.title}/>
+                  <input type="text" ref="title" name="title"  placeholder="Do this" onChange={this.handleChange.bind(this)} defaultValue={this.state.title}/>
                   <FrequencyInput frequency={this.state.frequency} updateFrequency={this.updateFrequency.bind(this)}/>
                 </div>
                 <input ref="description" className="long" type="text" placeholder="why?" name="description" onChange={this.handleChange.bind(this)} defaultValue={this.state.description}/>
-                <Button label="Save" handleClick={this.save.bind(this)}/>
+                <Button label="Save" className='save' handleClick={this.save.bind(this)}/>
               </li>
             )
     }
@@ -56,7 +56,6 @@ export default class ListItem extends Component {
 
   save(){
     this.setState({saved : true})
-    console.log('save', this.state)
     this.props.saveNew(this.state)
   }
 

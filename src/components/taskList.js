@@ -21,7 +21,7 @@ export default class TaskList extends Component {
         <ul>
         {itemizedTasks}
         </ul>
-        <Button style={{ 'marginBottom': '8px', 'marginTop': '-20px'}} handleClick={this.addTask.bind(this)} label='Add' />
+        <Button className="add" style={{ 'marginBottom': '8px', 'marginTop': '-20px'}} handleClick={this.addTask.bind(this)} label='Add' />
       </div>
     )
   }
@@ -39,7 +39,7 @@ export default class TaskList extends Component {
     })
   }
   saveTask(t) {
-    console.log(t)
+console.log('******',t)
     let task = {
       title: t.title,
       description: t.description,
@@ -57,6 +57,7 @@ export default class TaskList extends Component {
       tasks.splice(tasks.length-1)
       tasks.push(task)
     }
+    console.log('tasks', tasks)
     this.setState({ tasks })
 
   }

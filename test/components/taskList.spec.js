@@ -1,6 +1,6 @@
 require('../test.main.js')
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, simulate } from 'enzyme';
 import sinon from 'sinon';
 import { expect } from 'chai'
 import tasks from '../fixtures/tasks.js'
@@ -16,7 +16,7 @@ describe('the taskList component', () => {
       tasks
     }
     taskList = mount(<TaskList {...props}/>)
-
+    console.log('tasks',tasks.length)
   })
   it('is not undefined', () => {
     expect(taskList).to.not.equal(undefined)
@@ -26,8 +26,8 @@ describe('the taskList component', () => {
   })
   describe('a new task', () => {
     let newTask;
-    beforeEach(() => {
-      taskList.instance().addTask();
+    before(() => {
+      taskList.find('.add').simulate('click')
       newTask = taskList.state().tasks[taskList.state().tasks.length-1]
     })
     it('is blank when it is added', () => {
@@ -37,6 +37,35 @@ describe('the taskList component', () => {
     })
     it('is not saved', () => {
       expect(newTask.saved).to.equal(false)
+    })
+    describe('saving a task', () => {
+      let task;
+      beforeEach(()=>{
+        task =   {
+            title: 'yoddle',
+            frequency: {  amount: 3, unit: 'day' },
+            description: 'yodelaehooo! best kind of song'
+          };
+        //console.log(taskList.props())
+        let unsaved = taskList.find('.unsaved-task')
+        // unsaved.map(x => {console.log(x.html() + "\n\n")})
+        unsaved.find('input[name="title"]').value = task.title
+
+        unsaved.find('input[name="title"]').simulate('change')
+        unsaved.find('input[name="description"]').value = task.description
+        unsaved.find('input[name="description"]').simulate('change', task.description)
+        unsaved.find('.save').simulate('click')
+
+
+      })
+      it('adds the task to the list', () => {
+        expect(taskList.text()).to.contain(task.title)
+        expect(taskList.text()).to.contain(task.description)
+      })
+      it('displays the frequency in its readable format', () => {
+        let freqStr = new Frequency(...task.frequency)
+        expect(taskList.text()).to.contain(freqStr.perString())
+      })
     })
   })
   describe('editing a task', () => {
@@ -54,25 +83,6 @@ describe('the taskList component', () => {
       expect(editingTask.find('select').text()).to.contain(masterTask.frequency.unit)
     })
 })
-  describe('saving a task', () => {
-    let task;
-    beforeEach(()=>{
-      task =   {
-          title: 'yoddle',
-          frequency: {  amount: 3, unit: 'day' },
-          description: 'yodelaehooo! best kind of song'
-        };
-      taskList.instance().saveTask(task);
 
-    })
-    it('adds the task to the list', () => {
-      expect(taskList.text()).to.contain(task.title)
-      expect(taskList.text()).to.contain(task.description)
-    })
-    it('displays the frequency in its readable format', () => {
-      let freqStr = new Frequency(...task.frequency)
-      expect(taskList.text()).to.contain(freqStr.perString())
-    })
-  })
 
 })

@@ -5,6 +5,7 @@ export default [
       amount: 3,
       unit: 'month'
     },
+    saved: true,
     description: 'Keep place free of tolly hair'
   },
   {
@@ -13,6 +14,7 @@ export default [
       amount: 2,
       unit: 'week'
     },
+    saved: true,
     description: 'get in shape'
   },
   {
@@ -21,6 +23,7 @@ export default [
       amount: 1,
       unit: 'day'
     },
+    saved: true,
     description: 'Get better and programming and communuicating at the same time!'
   }
 ]
