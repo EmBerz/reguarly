@@ -1,2 +1,2 @@
-# reguarly
+# regularly
 habit tracking app
