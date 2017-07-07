@@ -40,23 +40,31 @@ describe('the taskList component', () => {
     })
     describe('saving a task', () => {
       let task;
+      // beforeEach(()=>{
+      //   console.log('=============')
+      //   task =   {
+      //       title: 'yoddle',
+      //       frequency: {  amount: 3, unit: 'day' },
+      //       description: 'yodelaehooo! best kind of song'
+      //     };
+      //   let unsaved = taskList.find('.unsaved-task')
+      //   unsaved.find('input[name="title"]').value = task.title
+      //
+      //   unsaved.find('input[name="title"]').simulate('change')
+      //   unsaved.find('input[name="description"]').value = task.description
+      //   unsaved.find('input[name="description"]').simulate('change', task.description)
+      //   unsaved.find('.save').simulate('click')
+      //
+      //
+      // })
       beforeEach(()=>{
         task =   {
             title: 'yoddle',
+            id:3,
             frequency: {  amount: 3, unit: 'day' },
             description: 'yodelaehooo! best kind of song'
           };
-        //console.log(taskList.props())
-        let unsaved = taskList.find('.unsaved-task')
-        // unsaved.map(x => {console.log(x.html() + "\n\n")})
-        unsaved.find('input[name="title"]').value = task.title
-
-        unsaved.find('input[name="title"]').simulate('change')
-        unsaved.find('input[name="description"]').value = task.description
-        unsaved.find('input[name="description"]').simulate('change', task.description)
-        unsaved.find('.save').simulate('click')
-
-
+        taskList.instance().saveTask(task)
       })
       it('adds the task to the list', () => {
         expect(taskList.text()).to.contain(task.title)

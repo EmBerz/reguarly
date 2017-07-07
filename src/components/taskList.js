@@ -39,7 +39,6 @@ export default class TaskList extends Component {
     })
   }
   saveTask(t) {
-console.log('******',t)
     let task = {
       title: t.title,
       description: t.description,
@@ -57,7 +56,6 @@ console.log('******',t)
       tasks.splice(tasks.length-1)
       tasks.push(task)
     }
-    console.log('tasks', tasks)
     this.setState({ tasks })
 
   }
